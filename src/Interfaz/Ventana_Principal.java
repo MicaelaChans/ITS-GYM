@@ -125,6 +125,7 @@ public class Ventana_Principal extends JFrame {
 	private void limpiarFormulario () {
 		textField_Usuario.setText("");
 		textField_Contraseña.setText("");
-	}	
+	}
+	
+	
 }
-
