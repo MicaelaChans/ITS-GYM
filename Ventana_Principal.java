@@ -1,7 +1,6 @@
 package Interfaz;
 
-import java.awt.EventQueue;
-
+import java.awt.EventQueue; 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,12 +11,18 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
+
+
 
 public class Ventana_Principal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField_Contraseña;
+	private JTextField textField_Usuario;
 
 	/**
 	 * Launch the application.
@@ -72,17 +77,54 @@ public class Ventana_Principal extends JFrame {
 		btn_Ingresar.setBounds(67, 265, 118, 23);
 		contentPane.add(btn_Ingresar);
 		
+		btn_Ingresar.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        String usuario = textField_Usuario.getText();
+		        String password = textField_Contraseña.getText();
+
+
+		        // Simulación (hasta tener BD)
+		        if (usuario.equals("socio") && password.equals("123")) {
+		            new Ventana_Admin().setVisible(true);
+		            dispose();
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
+		        }
+		           
+		    }
+		    
+		});
+		getRootPane().setDefaultButton(btn_Ingresar);//Comando para ingresar apretando enter
+
+
+		
 		JButton btn_Limpiar = new JButton("Limpiar");
+		btn_Limpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiarFormulario();
+			}
+		});
 		btn_Limpiar.setBounds(225, 265, 118, 23);
 		contentPane.add(btn_Limpiar);
 		
-		JButton btn_Salir = new JButton("Salir");
-		btn_Salir.setBounds(391, 265, 118, 23);
-		contentPane.add(btn_Salir);
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnSalir.setBounds(391, 265, 118, 23);
+		contentPane.add(btnSalir);
 		
-		JComboBox cb_Usuario = new JComboBox();
-		cb_Usuario.setModel(new DefaultComboBoxModel(new String[] {"", "Socio", "Profesor", "Administrador"}));
-		cb_Usuario.setBounds(189, 116, 235, 22);
-		contentPane.add(cb_Usuario);
+		textField_Usuario = new JTextField();
+		textField_Usuario.setColumns(10);
+		textField_Usuario.setBounds(189, 123, 235, 20);
+		contentPane.add(textField_Usuario);
 	}
+	
+	private void limpiarFormulario () {
+		textField_Usuario.setText("");
+		textField_Contraseña.setText("");
+	}	
 }
+

@@ -91,3 +91,4 @@ public class Clase {
     public void inscribirSocio(Socio socio) {}
     public void mostrarInscriptos() {}
 }
+

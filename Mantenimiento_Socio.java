@@ -32,7 +32,5 @@ public class Mantenimiento_Socio {
 				return s;
 			}
 		}return null;
-	}
-	
-	
+	}	
 }
